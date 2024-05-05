@@ -6,10 +6,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <>
+      <div className="relative">
         <Header />
         <HomePage />
-      </>
+      </div>
     ),
   },
   {
