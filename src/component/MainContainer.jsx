@@ -14,16 +14,20 @@ const MainContainer = () => {
   const { upcommingMovies } = useFetchUpcommingMovies();
 
   return (
+    <>
     <div>
       <BackGroundVideo />
       <VideoTitle />
-      <div className="text-white absolute top-2/3 left-8 ">
+      </div>
+      <div className='bg-black'>
+      <div className="-mt-52 relative z-50 ">
         <MoviesList title="Popular Movies" movies={recentMovies} />
         <MoviesList title="Now Playing Movies" movies={popularMovies} />
         <MoviesList title="Top Rated " movies={topRatedMovies} />
         <MoviesList title="Upcomming" movies={upcommingMovies} />
       </div>
-    </div>
+      </div>
+   </>
   );
 };
 

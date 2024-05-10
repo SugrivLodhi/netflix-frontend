@@ -5,9 +5,11 @@ import { toast } from "react-toastify";
 import { BASE_URL } from "../constant";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userslice";
+import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 const AuthPage = () => {
   const dipatch = useDispatch()
- //const navigate = useNavigate()
+ const navigate = useNavigate()
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +38,7 @@ const AuthPage = () => {
      });
       toast.success(result.data.message)
       dipatch(setUser(result.data.data))
-      //navigate('/browse')
+      navigate('/browse')
     } catch (err) {
       console.log("err", err);
     }
@@ -59,10 +61,13 @@ const AuthPage = () => {
     }
   };
   return (
-    <div className="flex items-center justify-center rounded  m-auto max-w-[450px] bg-black opacity-75">
-      <div className="max-w-md w-full  p-8 rounded shadow-lg m-4 flex flex-col">
-        <h2 className="text-3xl mb-5  font-semibold text-white">{!isUserCreated? "Sign Up" :"SignIn"}</h2>
-        <form onSubmit={onSubmit} className="flex flex-col gap-4">
+    <div>
+     <Header/>
+      <div className='absolute'>
+           <img className='w-[100vw] h-[100vh] bg-cover' src="https://assets.nflxext.com/ffe/siteui/vlv3/dc1cf82d-97c9-409f-b7c8-6ac1718946d6/14a8fe85-b6f4-4c06-8eaf-eccf3276d557/IN-en-20230911-popsignuptwoweeks-perspective_alpha_website_medium.jpg" alt="banner" />
+          </div>
+        <form onSubmit={onSubmit} className='flex gap-3 flex-col w-3/12 p-12 my-36 left-0 right-0  mx-auto items-center justify-center absolute rounded-md bg-black opacity-80'>
+        <h1 className='text-3xl text-white mb-5 font-bold'>{isUserCreated ? "Login" : "Signup"}</h1>
           {!isUserCreated && (
             <Input
               placeholder="Enter Full Name"
@@ -81,13 +86,12 @@ const AuthPage = () => {
           />
           <button
             type="submit"
-            className="bg-red-700 text-white py-4 text-lg rounded transition duration-300"
+            className="bg-red-700 text-white py-2 px-4 text-lg rounded transition duration-300"
           >
             {!isUserCreated ? "Sign Up" : "SignIn"}
           </button>
         </form>
       </div>
-    </div>
   );
 };
 

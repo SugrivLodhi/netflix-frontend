@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AuthPage from "./AuthPage";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import MainContainer from "./MainContainer";
 
 const HomePage = () => {
-  const {user} = useSelector((data) => data.userData);
-
-  if (!user?.userName) {
-    return <AuthPage />;
-  }
+  const {user} = useSelector((state) => state?.userData);
+  console.log("user",user)
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (user?.userName) {
+        navigate("/browse");
+    }
+}, []);
   return (
-    <div className="relative">
-      <MainContainer />
-    </div>
+      <AuthPage />
   );
 };
 

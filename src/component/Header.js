@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../constant";
 import { toast } from "react-toastify";
-import { setUserToogle } from "../redux/userslice";
+import { setUser, setUserToogle } from "../redux/userslice";
 
 const Header = () => {
   const {user,toogle} = useSelector((state) => state?.userData);
@@ -12,9 +12,10 @@ const Header = () => {
   const handleLogout = async () => {
     const result = await axios.get(`${BASE_URL}/logout`);
     toast.success(result.data.message);
+    dispatch(setUser({}))
   };
   return (
-    <div className="flex justify-between items-center bg-gradient-to-r w-full absolute top-0 left-0 z-20 from-black-500 to-white-500">
+    <div className="absolute z-10 flex w-full items-center justify-between px-6 bg-gradient-to-b from-black">
       <Link to="/">
         <img
           className="h-28"
@@ -31,16 +32,11 @@ const Header = () => {
           >
             Logout
           </button>
-          {toogle ? (<Link to="/">
-            <button  onClick={()=> dispatch(setUserToogle(false))} className="py-2 px-3 bg-red-500 text-white rounded-md">
-              Home
+          <Link to="/browse">
+            <button onClick={()=> dispatch(setUserToogle(!toogle))} className="py-2 px-3 bg-red-500 text-white rounded-md">
+              {toogle? "Home":"Search"}
             </button>
-          </Link>):<Link to="/browse">
-            <button onClick={()=> dispatch(setUserToogle(true))} className="py-2 px-3 bg-red-500 text-white rounded-md">
-              Search
-            </button>
-          </Link>}
-          
+          </Link>
         </div>
       )}
     </div>

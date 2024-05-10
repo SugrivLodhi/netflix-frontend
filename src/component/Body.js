@@ -5,20 +5,13 @@ import Header from "./Header";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <div className="relative">
-        <Header />
-        <HomePage />
-      </div>
-    ),
+    element: <HomePage />,
   },
   {
     path: "browse",
     element: (
-      <>
-        <Header />
         <BrowePage />
-      </>
+      
     ),
   },
 ]);
