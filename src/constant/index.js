@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:8080"
+export const BASE_URL = "https://netflix-backend-lekg.onrender.com"
 export const API_URL1 = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
 export  const API_URL2 = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
 export const API_URL3= 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
